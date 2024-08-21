@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{%static 'css/modificar.css' %}" rel="stylesheet" />
+    <script src="{%static 'js/modificar_producto.js' %}"></script>
+</head>
+<body>
+    <div id="menu">
+        <a href="">Inicio</a>
+        <a href="{% url 'listadoProducto' %}">Pagina principal</a>
+        <a href="{% url 'mod_productos' %}">Ver productos</a>
+        <a href="#">Estadisticas</a>
+        <a href="#">Historial de cambios</a>
+        <a href="#">Perfill</a>
+      </div>
+        <h1>Modificar Producto</h1>
+
+    <form id="modificarProductoForm" method="post" action="{% url 'guardar_modificacion' producto.id %}">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ producto.Nombre }}" required>
+
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" value="{{ producto.Precio }}" required>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required>{{ producto.Descripción }}</textarea>
+
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" value="{{ producto.Stock }}" required>
+
+        <label for="link">Link:</label>
+        <input type="text" id="stock" name="link" value="{{ producto.Stock }}" required>
+
+        <label for="stock">Stock:</label>
+        <button onclick="toggleDropdown()" class="dropbtn">Tipo</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="#">Pan</a>
+            <a href="#">Reposteria</a>
+            <a href="#">Bebida</a>
+            <a href="#">Empanada</a>
+        </div>
+        <button type="button" id="guardarCambios">Guardar Cambios</button>
+    </form>
+</body>
+</html>

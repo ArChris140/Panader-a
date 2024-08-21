@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/S.png'%}" />
+    <script src="{% static 'js/pago.js' %}"></script>
+    <link href="{% static 'css/pago.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="checkout-header">
+            <h1>Checkout</h1>
+            <p>Completa tu compra</p>
+        </div>
+        <form id="checkout-form" name="checkoutForm" action="{% url 'pago' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" value="{{ request.session.Correo }}" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="time">Hora de entrega (8 AM - 7 PM):</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="total">Total a pagar:</label>
+                ${{ total_carrito }}
+            </div>
+            <button type="submit">Pagar</button>
+        </form>
+    </div>
+</body>
+</html>
+

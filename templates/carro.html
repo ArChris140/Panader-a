@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Shiro's</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{%static 'img/S.png'%}" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{%static 'css/styles.css' %}" rel="stylesheet" />
+    <link href="{%static 'css/style.css' %}" rel="stylesheet" />
+    <script src="{%static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <!--codigo de importacion del boostrap de js para que se despliegue la barra superior-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand shiros-brand" style="font-size: 35px;">Shiro's</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page"
+                            href="{% url 'listadoProducto' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contactanos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'quienes_somos' %}">Quienes somos</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Cuenta</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href=""></a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesion</a></li>
+                            <li><a class="dropdown-item" href="{% url 'crear_usuario' %}">Crear cuenta</a></li>
+                        </ul>
+                        {% if request.session.Correo %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'HistorialCompras' %}">Historial de compras</a></li>
+                        {% endif %}
+                    </li>
+                </ul>
+                <form class="d-flex" action="{% url 'carro' %}" method="GET">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Carro
+                    </button>
+                </form>
+                <div>
+                    {% if request.session.Correo %}
+                    Bienvenido, {{request.session.Correo}} &nbsp;&nbsp;
+                    <a href="{% url 'cerrar_sesion' %}">Cerrar sesión</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <form id="carro-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <div class="alert alert-primary" role="alert">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="row" colspan="3" class="text-center">CARRITO</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if request.session.carrito.items%}
+                    {% for key, value in request.session.carrito.items %}
+                    <tr>
+                        <td id="{{identificador}}nombre">{{value.nombre}}</td>
+                        <td id="{{identificador}}precio">${{value.precio}}</td>
+                        <td id="{{identificador}}cantidad">{{value.cantidad}}
+                            <a href="{% url 'Add2' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+                            <a href="{% url 'Sub' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="3">
+                            <div class="alert alert-danger text-center"> Sin Productos </div>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th scope="row">Total</th>
+                        <td colspan="2" id="total_carrito">${{total_carrito}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+        <div class="row text-center">
+            <div class="col-6"><a href="{% url 'CLS' %}" class="btn btn-danger">Limpiar</a></div>
+            <div class="col-6"><a href="{% url 'listadoProducto' %}" class="btn btn-secondary">Seguir Comprando</a></div>
+            <div class="col-11"><a type="submit" href="{% url 'pago' %}" id='comprar' class='btn btn-success'>Comprar</a></div>
+        </div>
+    </form>
+    <div>
+        <br>
+        <h2 class="text-center">Productos destacados</h2>
+    </div>
+    </div>
+</body>
+
+</html>

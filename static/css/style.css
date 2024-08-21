@@ -1,0 +1,86 @@
+
+body{
+    background-color: white;
+
+}
+
+
+.tipo {
+    width: 5%;
+    /* o cualquier otra anchura deseada */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.tipo .h2 {
+    width: 50%;
+    /* o cualquier otra anchura deseada */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.tipos {
+    width: 40%;
+    /* o cualquier otra anchura deseada */
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.tipos img {
+    margin: 10px;
+    /* Ajusta este valor según tus necesidades */
+}
+
+
+
+.text-center {
+    text-align: center;
+}
+
+
+.btn-floating {
+    display: inline-block;
+    margin: 0 10px;
+    /* Ajusta el margen entre los botones según sea necesario */
+
+}
+
+.carousel-item img{
+    box-shadow: 5px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    position: relative;
+    text-align: center;
+    width:950px;
+    height: 700px;
+}
+.card-img-top{
+    border-radius: 50px;
+    background-color: white;
+}
+.card{
+    border-radius: 50px;
+    background-color: white;
+}
+.card-body{
+    background-color: white;
+    border-radius: 50px;
+}
+
+.carousel-control-prev-icon{
+    background-color: white;
+    border-radius: 10px;
+    
+}
+.carousel-control-next-icon{
+    background-color: white;
+    border-radius: 10px;
+}
+ .bg{
+    background-color:white;
+    border-radius: 100px;
+ }
+ 

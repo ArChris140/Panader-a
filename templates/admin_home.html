@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{%static 'css/addmin.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <div id="menu">
+        <a href="">Inicio</a>
+        <a href="{% url 'listadoProducto' %}">Pagina principal</a>
+        <a href="{% url 'mod_productos' %}">Ver productos</a>
+        <a href="#">Estadisticas</a>
+        <a href="#">Historial de cambios</a>
+        <a href="#">Perfill</a>
+      </div>
+      
+      <div id="contenido">
+        <!-- Contenido de la página -->
+        <h1>Bienvenido a mi página</h1>
+        <p>Este es el contenido principal de la página.</p>
+      </div>
+      
+</body>
+</html>

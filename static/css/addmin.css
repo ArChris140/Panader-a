@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  #menu {
+    background-color: #3498db; /* Color azul */
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+
+  #menu a {
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff; /* Color blanco para el texto */
+    display: block;
+  }
+
+  #menu a:hover {
+    background-color: #2980b9; /* Cambio de color al pasar el ratón */
+  }
+
+  #contenido {
+    margin-left: 220px; /* Asegura que el contenido no se superponga al menú */
+    padding: 20px;
+  }

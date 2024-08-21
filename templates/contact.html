@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contactanos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!--aqui se esta importado el boostrap de javascript para que se pueda desplegar las opciones en la barra principal de "iniciar sesion" y "crear usuario" para acceder a esos html-->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!--aqui se termina la importacion del boostrap de javascript para que se pueda desplegar las opciones en la barra principal de "iniciar sesion" y "crear usuario" para acceder a esos html-->
+
+
+</head>
+
+<body>
+  <style>
+    body {
+      color: #000000;
+      /* Color predeterminado del texto */
+    }
+
+    /* Cambiar color del texto para los primeros cinco elementos */
+    .card-body p,
+    .form-control,
+    .btn.btn-primary {
+      color: #000000;
+      /* Cambiar a tu color preferido, por ejemplo, rojo (#ff0000) */
+    }
+
+    /* Cambiar color del texto para los elementos de error */
+    .invalid-feedback {
+      color: #000000;
+      /* Cambiar a tu color preferido, por ejemplo, rojo (#ff0000) */
+    }
+  </style>
+  <!-- Bootstrap 5 Contact Form Snippet -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+      <a class="navbar-brand shiros-brand" style="font-size: 35px;">Shiro's</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link active" aria-current="page"
+              href="{% url 'listadoProducto' %}">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contactanos</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'quienes_somos' %}">Quienes somos</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">Cuenta</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href=""></a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesion</a></li>
+              <li><a class="dropdown-item" href="{% url 'crear_usuario' %}">Crear cuenta</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" action="{% url 'carro' %}" method="GET">
+          <button class="btn btn-outline-dark" type="submit">
+            <i class="bi-cart-fill me-1"></i>
+            Carro
+          </button>
+        </form>
+        <div>
+          {% if request.session.Correo %}
+          Bienvenido, {{request.session.Correo}} &nbsp;&nbsp;
+          <a href="{% url 'cerrar_sesion' %}">Cerrar sesión</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid px-4 my-0">
+    <div class="row justify-content-center">
+      <div class="col-xl-9">
+        <div class="card border-0 rounded-3 shadow-lg overflow-hidden">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-sm-6 d-none d-sm-block bg-image">
+                <img src="https://www.dimensiongourmet.com/wp-content/uploads/2018/07/69709609-bakery-wallpapers.jpg"
+                  style="height: 835px;">
+
+
+              </div>
+              <div class="col-sm-6 p-4">
+                <br> <br>
+
+                <!--comienzo del formulario-->
+                <div
+                  style="background-color: white; padding: 25px; border-radius: 35px; width: max-content; width: 60%; max-width: 600px;margin: 0 200px;">
+                  <div class="contenedorFormulario">
+                    <p style="color: black; font-size: 27px;">Formulario de contacto</p>
+                    {% if "valido" in request.GET %}
+                    <p style="color: rgb(255, 102, 0);">
+                      <strong><em>Tu mensaje ha sido enviado correctamente!
+                          <br>Te contactaremos a la brevedad!</em></strong>
+                    </p>
+
+                    {% endif %}
+                    <form action="" method="POST" class="modern-form">
+                      {% csrf_token %} <!--token para dar seguridad al formulario-->
+                      <div class="form-group">
+                        <label for="id_nombre">Nombre</label>
+                        <input type="text" class="form-control" id="id_nombre" name="nombre" maxlength="20" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="id_email">Email</label>
+                        <input type="email" class="form-control" id="id_email" name="email" maxlength="30" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="id_mensaje">Mensaje</label>
+                        <textarea class="form-control" id="id_mensaje" name="mensaje" rows="4" maxlength="400"
+                          required></textarea>
+                      </div>
+                      <div class="text-center">
+                        <input type="submit" value="Enviar" class="btn-submit">
+                      </div>
+                    </form>
+                  </div>
+
+
+
+                </div>
+
+                <!--fin del formulario-->
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

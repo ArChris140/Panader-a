@@ -1,0 +1,510 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Shiro's</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{%static 'img/S.png'%}" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{%static 'css/styles.css' %}" rel="stylesheet" />
+    <link href="{%static 'css/style.css' %}" rel="stylesheet" />
+    <script src="{%static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand shiros-brand" style="font-size: 35px;">Shiro's</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page"
+                            href="{% url 'listadoProducto' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contactanos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'quienes_somos' %}">Quienes somos</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Cuenta</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href=""></a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesion</a></li>
+                            <li><a class="dropdown-item" href="{% url 'crear_usuario' %}">Crear cuenta</a></li>
+                        </ul>
+                        {% if request.session.Correo %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'HistorialCompras' %}">Historial de compras</a></li>
+                        {% endif %}
+                    </li>
+                </ul>
+                <form class="d-flex" action="{% url 'carro' %}" method="GET">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Carro
+                    </button>
+                </form>
+                <div>
+                    {% if request.session.Correo %}
+                    Bienvenido, {{request.session.Correo}} &nbsp;&nbsp;
+                    <a href="{% url 'cerrar_sesion' %}">Cerrar sesión</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <!--CARROUSEL-->
+    <header class="bg py-5">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+
+            <div class="carousel-inner" >
+                <div class="carousel-item active">
+                    <img src="https://cdn2.cocinadelirante.com/680x400/filters:format(jpg):quality(75)/sites/default/files/images/2023/03/masa-empanadas-sin-gluten-dos-ingredientes.jpg"
+                        class="d-block  mx-auto my-auto" alt="img-1">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://portales.vilbo.com/files/uploads/images/articulos/book%20dulcypas%2018/targarona-vitrina-dulcypasbook.jpg"
+                        class="d-block  mx-auto my-auto" alt="img-2">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://www.ocu.org/-/media/ocu/images/home/alimentacion/alimentos/panes/panes-guia-compra.jpg?rev=9a1e9247-e398-4c0f-b489-d01d95a221ad&hash=E5149953335F3DC2129A9B495E89DF51"
+                        class="d-block mx-auto my-auto" alt="img-3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
+
+
+    <div class="tipos">
+        <a href="#pan">
+            <img src="/static/img/bread_food_4690.png">
+        </a>
+        <a href="#reposteria">
+            <img src="/static/img/torta-de-la-taza (1).png">
+        </a>
+        <a href="#bebidas">
+            <img src="/static/img/bebidas-sin-alcohol.png">
+        </a>
+        <a href="#empanadas">
+            <img src="/static/img/empanada.png">
+        </a>
+    </div>
+    <br>
+    <div class="tipo">
+        <h2 id="pan"> Panes </h2>
+    </div>
+    {% if producto %}
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-4 justify-content-center">
+                {% for pro in producto %}
+                {% if pro.Tipo == 'Pan' %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{ pro.Link }}" alt="..." width='200px' height='150px' />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ pro.Nombre }}</h5>
+                                <!-- Product price-->
+                                <h5>${{ pro.Precio }}</h5>
+                                <!-- Botones para abrir la ventana modal y añadir al carro -->
+                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                                    data-bs-target="#productModal{{ pro.id }}">
+                                    Ver detalles
+                                </button>
+                                <a href="{% url 'Add' pro.id %}" class="btn btn-outline-dark">Añadir al Carro</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ventana modal -->
+                <div class="modal fade" id="productModal{{ pro.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ pro.Nombre }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex">
+                                    <!-- Imagen a la izquierda -->
+                                    <img src="{{ pro.Link }}" alt="..." width="100px" height="75px" class="me-3">
+                                    <!-- Detalles a la derecha -->
+                                    <div>
+                                        <p>{{ pro.Descripción }}</p>
+                                        <p>Stock: {{ pro.Stock }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-dark"
+                                    data-bs-dismiss="modal">Cerrar</button>
+                                <a href="{% url 'Add' pro.id %}" class="btn btn-outline-dark">Añadir al Carro</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <h2>No se han encontrado productos</h2>
+    {% endif %}
+
+    <div class="tipo">
+        <h2 id="reposteria"> Repostería </h2>
+    </div>
+    {% if producto %}
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-4 justify-content-center">
+                {% for pro in producto %}
+                {% if pro.Tipo == 'Repostería' %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{ pro.Link }}" alt="..." width='200px' height='150px' />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ pro.Nombre }}</h5>
+                                <!-- Product price-->
+                                <h5>${{ pro.Precio }}</h5>
+                                <!-- Botones para abrir la ventana modal y añadir al carro -->
+                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                                    data-bs-target="#productModal{{ pro.id }}">
+                                    Ver detalles
+                                </button>
+                                <a href="{% url 'Add' pro.id %}" class="btn btn-outline-dark">Añadir al Carro</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ventana modal -->
+                <div class="modal fade" id="productModal{{ pro.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ pro.Nombre }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex">
+                                    <!-- Imagen a la izquierda -->
+                                    <img src="{{ pro.Link }}" alt="..." width="100px" height="75px" class="me-3">
+                                    <!-- Detalles a la derecha -->
+                                    <div>
+                                        <p>{{ pro.Descripción }}</p>
+                                        <p>Stock: {{ pro.Stock }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-dark"
+                                    data-bs-dismiss="modal">Cerrar</button>
+                                <a href="{% url 'Add' pro.id %}" class="btn btn-outline-dark">Añadir al Carro</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <h2>No se han encontrado productos</h2>
+    {% endif %}
+
+    <div class="tipo">
+        <h2 id="bebidas"> Bebidas </h2>
+    </div>
+
+    {% if producto %}
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-4 justify-content-center">
+                {% for pro in producto %}
+                {% if pro.Tipo == 'Bebida' %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{ pro.Link }}" alt="..." width='200px' height='250px' />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ pro.Nombre }}</h5>
+                                <!-- Product price-->
+                                <h5>${{ pro.Precio }}</h5>
+                                <!-- Botones para abrir la ventana modal y añadir al carro -->
+                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                                    data-bs-target="#productModal{{ pro.id }}">
+                                    Ver detalles
+                                </button>
+                                <a href="{% url 'Add' pro.id %}" class="btn btn-outline-dark">Añadir al Carro</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ventana modal -->
+                <div class="modal fade" id="productModal{{ pro.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ pro.Nombre }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex">
+                                    <!-- Imagen a la izquierda -->
+                                    <img src="{{ pro.Link }}" alt="..." width="100px" height="75px" class="me-3">
+                                    <!-- Detalles a la derecha -->
+                                    <div>
+                                        <p>{{ pro.Descripción }}</p>
+                                        <p>Stock: {{ pro.Stock }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-dark"
+                                    data-bs-dismiss="modal">Cerrar</button>
+                                <a href="{% url 'Add' pro.id %}" class="btn btn-outline-dark">Añadir al Carro</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <h2>No se han encontrado productos</h2>
+    {% endif %}
+
+    <div id="empandas" class="tipo">
+        <h2 id="empanadas"> Empanadas </h2>
+    </div>
+    {% if producto %}
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-4 justify-content-center">
+                {% for pro in producto %}
+                {% if pro.Tipo == 'Empanada' %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{ pro.Link }}" alt="..." width='200px' height='150px' />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ pro.Nombre }}</h5>
+                                <!-- Product price-->
+                                <h5>${{ pro.Precio }}</h5>
+                                <!-- Botones para abrir la ventana modal y añadir al carro -->
+                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                                    data-bs-target="#productModal{{ pro.id }}">
+                                    Ver detalles
+                                </button>
+                                <a href="{% url 'Add' pro.id %}" class="btn btn-outline-dark">Añadir al Carro</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ventana modal -->
+                <div class="modal fade" id="productModal{{ pro.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ pro.Nombre }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex">
+                                    <!-- Imagen a la izquierda -->
+                                    <img src="{{ pro.Link }}" alt="..." width="100px" height="75px" class="me-3">
+                                    <!-- Detalles a la derecha -->
+                                    <div>
+                                        <p>{{ pro.Descripción }}</p>
+                                        <p>Stock: {{ pro.Stock }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-dark"
+                                    data-bs-dismiss="modal">Cerrar</button>
+                                <a href="{% url 'Add' pro.id %}" class="btn btn-outline-dark">Añadir al Carro</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <h2>No se han encontrado productos</h2>
+    {% endif %}
+
+    <!-- Footer-->
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+
+            <!-- Right -->
+            <div class="container text-center">
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark">
+                    <i class="fab fa-twitter"></i>
+                </a>
+
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark">
+                    <i class="fab fa-google"></i>
+                </a>
+
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Shiro's
+                        </h6>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Productos
+                        </h6>
+                        <p>
+                            <a href="#pan" class="text-reset">Pan</a>
+                        </p>
+                        <p>
+                            <a href="#reposteria" class="text-reset">Reposteria</a>
+                        </p>
+                        <p>
+                            <a href="#bebidas" class="text-reset">Bebidas<a>
+                        </p>
+                        <p>
+                            <a href="#empanadas" class="text-reset">Empanadas</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Cuenta
+                        </h6>
+                        <p>
+                            <a href="#" class="text-reset">Inicio</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'login' %}" class="text-reset">Iniciar sesion</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'crear_usuario' %}" class="text-reset">Crear cuenta</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Ayuda</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
+                        <p><i class="fas fa-home me-3"></i> Valparaiso</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            shiros.panad@gmail.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> +56999999966</p>
+                        <p><i class="fas fa-print me-3"></i> +56966666666</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2023 Copyright:
+            <a class="text-reset fw-bold">Shiro's</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+</body>
+
+</html>

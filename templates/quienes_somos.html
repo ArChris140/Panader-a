@@ -1,0 +1,290 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" type="image/x-icon" href="{%static 'img/S.png'%}" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <title>Quienes somos</title>
+
+  <!-- Bootstrap core CSS -->
+
+  <link href="{%static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+
+  <link href="{%static 'css/carousel.css' %}" rel="stylesheet" />
+  <link href="{%static 'css/stylee.css' %}" rel="stylesheet" />
+
+  <!--aqui se esta importanto el boostrap de javascript para que se pueda desplegar las opciones en la barra principal de "iniciar sesion" y "crear usuario" para acceder a esos html-->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <!--aqui se termina la importacion del boostrap de javascript para que se pueda desplegar las opciones en la barra principal de "iniciar sesion" y "crear usuario" para acceder a esos html-->
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="container px-4 px-lg-5">
+      <a class="navbar-brand shiros-brand" style="font-size: 35px;">Shiro's</a>
+
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link active" aria-current="page"
+              href="{% url 'listadoProducto' %}">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contactanos</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'quienes_somos' %}">Quienes somos</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">Cuenta</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href=""></a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesion</a></li>
+              <li><a class="dropdown-item" href="{% url 'crear_usuario' %}">Crear cuenta</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" action="{% url 'carro' %}" method="GET">
+          <button class="btn btn-outline-dark" type="submit">
+            <i class="bi-cart-fill me-1"></i>
+            Carro
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- imagen de la tienda -->
+
+  <div class="tienda" style="background-image: url('https://lh3.googleusercontent.com/p/AF1QipM5gqURrK1H0d_SQEePqndMV2p4m_IHYraWDwbt=w1080-h608-p-no-v0'); 
+       background-repeat: no-repeat; /* Evita la repetición de la imagen */
+       background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+       height: 500px; /* Aumenta la altura de la imagen */
+       display: flex;
+       flex-direction: column;
+       justify-content: flex-end; /* Coloca el contenido al final del contenedor */">
+
+  </div>
+
+  <br><br><br>
+  <!--imagenes de los fundadores y los productos que venden-->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="/static/img/chef.png" alt="Generic placeholder image" width="140" height="140">
+
+
+        <h2>Matias Torres Sagredo</h2>
+        <p>Profesional de 35 años, fundador del local cuenta con una experiencia laboral de 10 años, con un excelente
+          desempeño en el area de panaderias y gelaterias, sus ganas de emprender y de mostrar a sus clientes su talento
+          y pasion llevo a la creacion del local Shiro's</p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="/static/img/chef2.png" alt="Generic placeholder image" width="140"
+          height="140">
+        <h2>Daniela Diaz Suarez</h2>
+        <p>Profesional de 38 años, cuenta con una experiencia laboral de 7 años, con un historial excelente en la
+          panaderia y reposteria es la actual jefa de local </p>
+
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="/static/img/chef3.png" alt="Generic placeholder image" width="140"
+          height="140">
+        <h2>Hernan olguin Ramirez</h2>
+        <p>Profesional de 40 años, repostero,panadero y amasandero es el supervisor en el area de produccion del local
+        </p>
+
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- descripciones del pan,reposteria y empanadas -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Reposteria</h2>
+        <p class="lead">¡Endulza cada momento con el sabor del éxito! ¡Tus creaciones son la receta perfecta para el
+          triunfo! 🍰✨</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" src="/static/img/reposteria.png"
+          data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Empanadas <span class="text-muted"></span></h2>
+        <p class="lead">¡Dale un bocado a la felicidad con nuestras irresistibles empanadas! En cada doblez,
+          encuentras el secreto de la satisfacción. ¡Sabor que inspira, emoción que perdura! 🥟✨</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img class="featurette-image img-fluid mx-auto" src="/static/img/empanada1.png"
+          data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Pan <span class="text-muted"></span></h2>
+        <p class="lead">Amasar sueños, hornear pasiones. Cada miga es una historia de dedicación. Con cada pan,
+          compartimos amor en forma de deliciosas experiencias. ¡Pan con propósito, sabor que inspira! 🍞✨</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" src="/static/img/pan.png" data-src="holder.js/500x500/auto"
+          alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+  </main>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="/static/js/vendor/popper.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <script src="/static/js/vendor/holder.min.js"></script>
+</body>
+<footer class="text-center text-lg-start bg-light text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+
+    <!-- Right -->
+    <div class="container text-center">
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+        <i class="fab fa-twitter"></i>
+      </a>
+
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+        <i class="fab fa-google"></i>
+      </a>
+
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Shiro's
+          </h6>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Productos
+          </h6>
+          <p>
+            <a href="#pan" class="text-reset">Pan</a>
+          </p>
+          <p>
+            <a href="#reposteria" class="text-reset">Reposteria</a>
+          </p>
+          <p>
+            <a href="#bebidas" class="text-reset">Bebidas<a>
+          </p>
+          <p>
+            <a href="#empanadas" class="text-reset">Empanadas</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Cuenta
+          </h6>
+          <p>
+            <a href="#" class="text-reset">Inicio</a>
+          </p>
+          <p>
+            <a href="{% url 'login' %}" class="text-reset">Iniciar sesion</a>
+          </p>
+          <p>
+            <a href="{% url 'crear_usuario' %}" class="text-reset">Crear cuenta</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Ayuda</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
+          <p><i class="fas fa-home me-3"></i> Valparaiso</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            shirospanad@gmail.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> +56999999966</p>
+          <p><i class="fas fa-print me-3"></i> +56966666666</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2023 Copyright:
+    <a class="text-reset fw-bold">Shiro's</a>
+  </div>
+</footer>
+
+</html>

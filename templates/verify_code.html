@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificacion de codigo</title>
+    <link href="{%static 'css/verify_code.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <h1>Verificación de Código</h1>
+        
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <label for="verification_code">Código de Verificación:</label>
+        <input type="text" name="verification_code" required>
+        <button type="submit">Verificar</button>
+    </form>
+</body>
+</html>

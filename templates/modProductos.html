@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Productos</title>
+    <link href="{% static 'css/modProductos.css' %}" rel="stylesheet" />
+    <script src="{%static 'js/modProductos.js' %}"></script>
+</head>
+<body>
+    <div id="menu">
+        <a href="">Inicio</a>
+        <a href="{% url 'listadoProducto' %}">Pagina principal</a>
+        <a href="{% url 'mod_productos' %}">Ver productos</a>
+        <a href="#">Estadisticas</a>
+        <a href="#">Historial de cambios</a>
+        <a href="#">Perfill</a>
+      </div>
+    
+    <div id="content-container">
+        <h1>Modificar Productos</h1>
+        
+        {% for producto in productos %}
+            <div class="product-container">
+                <h2>{{ producto.Nombre }}</h2>
+                <p>Precio: ${{ producto.Precio }}</p>
+                <p>Descripción: {{ producto.Descripcion }}</p>
+                <p>Stock: {{ producto.Stock }}</p>
+                
+                <!-- Botones de acción -->
+                <a href="{% url 'modificar_producto' producto.id %}">Modificar</a>
+                <a href="{% url 'eliminar_producto' producto.id %}">Eliminar</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
